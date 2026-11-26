@@ -30,12 +30,12 @@ predictable, so it needs far less safety stock. That's where the savings come fr
 
 | Tab | What a client sees |
 |---|---|
-| **Business impact** | Error vs. baselines, stock needed and working capital released, and a fill-rate vs. stock-value curve for each method |
-| **Product planner** | 60 weeks of sales, backtest, 13-week forecast with an 80% range, the order to place now, and an AI briefing |
-| **Order plan** | Order-up-to levels for every product at the chosen lead time and service level, downloadable as CSV |
-| **How it works** | Method, testing approach and the features that drive the forecast |
+| **Overview** | The result in one sentence, working capital freed up, stock needed by each method, and the full stock vs. service trade-off |
+| **Product planner** | A year of sales, the model's test predictions, a 13-week forecast with likely range, a step-by-step "what to order" calculation, and an AI briefing |
+| **Order plan** | Type in current stock and get this week's purchase order for all 100 products, downloadable as CSV |
+| **How it works** | Method, testing approach and what the model pays most attention to |
 
-Lead time (1–3 weeks) and target service level (80–99%) are adjustable, and every number updates.
+Lead time (1–3 weeks) and the share of customers served from stock (80–99%) are adjustable, and every number updates.
 
 ## Method
 
