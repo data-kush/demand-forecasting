@@ -7,6 +7,8 @@ transactions. It forecasts demand per product, recommends how much stock to orde
 plain-English briefing for each product with a free local AI model, and shows in money what the better
 forecast is worth.
 
+![Overview](docs/overview.png)
+
 ## Results (13 weeks of unseen data, Sep–Nov 2011)
 
 | Forecasting method | Forecast error (WAPE, 1–4 weeks ahead) | Bias | Avg. stock needed for 95% fill rate* |
@@ -36,6 +38,8 @@ predictable, so it needs far less safety stock. That's where the savings come fr
 | **How it works** | Method, testing approach and what the model pays most attention to |
 
 Lead time (1–3 weeks) and the share of customers served from stock (80–99%) are adjustable, and every number updates.
+
+![Product planner](docs/product-planner.png)
 
 ## Method
 
