@@ -89,6 +89,12 @@ def build_weekly_panel(sales: pd.DataFrame, n_skus: int = 100,
     info["revenue_share"] = info["total_revenue"] / info["total_revenue"].sum()
     cum = info["revenue_share"].cumsum()
     info["abc_class"] = np.select([cum <= 0.7, cum <= 0.9], ["A", "B"], default="C")
+    # How dependent is each product on a handful of big (often wholesale) buyers? Last 52 weeks.
+    recent = sub.loc[(sub["week"] > last_full_week - pd.Timedelta(weeks=52)) & sub["customer_id"].notna()]
+    by_cust = recent.groupby(["sku", "customer_id"])["qty"].sum()
+    top3 = by_cust.groupby(level="sku", group_keys=False).apply(lambda s: s.nlargest(3).sum())
+    info["top3_buyer_share"] = (top3 / by_cust.groupby(level="sku").sum()).reindex(chosen)
+    info["buyers_52w"] = by_cust.groupby(level="sku").size().reindex(chosen)
     stats = panel.groupby("sku")["qty"].agg(["mean", "std"])
     info["demand_cv"] = (stats["std"] / stats["mean"]).reindex(chosen)
     info["xyz_class"] = pd.cut(info["demand_cv"], [-np.inf, 0.5, 1.0, np.inf],

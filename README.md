@@ -33,13 +33,22 @@ predictable, so it needs far less safety stock. That's where the savings come fr
 | Tab | What a client sees |
 |---|---|
 | **Overview** | The result in one sentence, working capital freed up, stock needed by each method, and the full stock vs. service trade-off |
+| **Insights** | AI executive summary, 13-week outlook, seasonality this year vs last, biggest movers, a watchlist of products unusually above/below last year, accuracy by product group, and how dependence on a few big buyers drives forecast error |
 | **Product planner** | A year of sales, the model's test predictions, a 13-week forecast with likely range, a step-by-step "what to order" calculation, and an AI briefing |
-| **Order plan** | Type in current stock and get this week's purchase order for all 100 products, downloadable as CSV |
+| **Order plan** | Type in current stock and get this week's purchase order for all 100 products (CSV), plus an AI-drafted supplier email you can edit |
+| **Ask AI** | Chat with the data: questions about demand, risks, the order or any named product, answered from the dashboard's own numbers |
 | **How it works** | Method, testing approach and what the model pays most attention to |
+
+**Key findings from the analysis**
+- The AI's biggest edge is on **erratic top sellers (AZ)**: 16% lower error than the spreadsheet. On steadier products it is about level, and the money comes from it under-forecasting much less.
+- **Buyer concentration explains forecast error** (correlation 0.59). The median product gets 30% of its units from just 3 buyers, and some get over 90%. For those products, talking to the big buyers beats any model.
+- Last December's sales were inflated by one-off bulk orders, which the model doesn't expect to repeat. That's why the next 13 weeks are forecast 30% below last year, led by products like card holders that sold thousands of units to a few buyers.
 
 Lead time (1–3 weeks) and the share of customers served from stock (80–99%) are adjustable, and every number updates.
 
 ![Product planner](docs/product-planner.png)
+
+![Insights](docs/insights.png)
 
 ## Method
 
@@ -59,10 +68,11 @@ Lead time (1–3 weeks) and the share of customers served from stock (80–99%) 
    plus z × the forecast error measured on the *previous* quarter. Orders arrive after the lead time, real
    demand is served, and unmet demand is lost. Sweeping the safety factor traces fill rate against
    average stock value for each method.
-5. **AI briefings:** a local LLM (Ollama, `llama3.2:3b` by default) turns the computed facts into a
-   4-point summary for a store manager. It runs free and offline, it's told not to invent numbers, and
-   the exact facts it's given are shown beside it. If Ollama isn't running, the app shows a rule-based
-   summary instead.
+5. **Local AI (Ollama, `llama3.2:3b` by default):** writes product briefings, an executive summary and
+   supplier emails, and answers questions in the Ask AI tab. It runs free and offline on a normal laptop
+   CPU (20–60 seconds per answer). Every prompt is grounded in a compact fact sheet the app computes, the
+   model is told never to invent numbers, and the facts it was given are always one click away. If
+   Ollama isn't running, the rest of the app still works.
 
 ## Run it locally
 
